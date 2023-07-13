@@ -2,8 +2,8 @@ import discord
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from .env file.
+load_dotenv())
 
 
 # create an instance of client
