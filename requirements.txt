@@ -1,3 +1,5 @@
 flake8
 black
+discord.py
 requests
+urllib3<2.0
