@@ -1,6 +1,9 @@
 import discord
 import os
-import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # create an instance of client
@@ -22,4 +25,12 @@ async def on_message(message):
         await message.channel.send("Hello!")
 
 
-client.run("MTEyOTA0Njk1NTg5MzQ2OTIyNg.GbmXhk.qJLIixsuX8QCEQDv1-hYVx51TWyoYwWeQZAz6I")
+"""
+def get_quote():
+    response = requests.get('https://api.etherscan.io/api', params=params)
+#creating my own for whale tracker
+@client.event
+async def whale_alert(prev_bal, current_bal):
+    if prev_bal is not None and prev_bal - current_bal >= 10000:
+"""
+client.run(os.getenv("DISCORD_TOKEN"))

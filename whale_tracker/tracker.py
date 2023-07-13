@@ -3,13 +3,13 @@
 # my address: 0x15378FA7495bac16040877F7E17c6547481687F6
 
 import requests
+import discord
 
 # import json
 # import smtplib
 # from email.message import EmailMessage
 import time
 import os
-
 
 # connect to API
 url = "https://api.etherscan.io/api"
