@@ -37,7 +37,7 @@ while True:
     current_bal = float(data["result"]) / 10**18
     print(f"Current Balance: {current_bal} ETH")
 
-    if prev_bal is not None and prev_bal - current_bal >= 4900:
+    if prev_bal is not None and prev_bal - current_bal >= 0:
         print("Sending alert to discord")
         alert_content = f"The balance has decreased by over 4900 ETH! New balance: {current_bal} ETH"
         requests.post(
