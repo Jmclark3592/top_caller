@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 flake8
 black
 discord.py
@@ -7,13 +6,3 @@ urllib3<2.0
 yfinance
 pandas
 numpy
-=======
-flake8
-black
-discord.py
-requests
-urllib3<2.0
-yfinance
-pandas
-numpy
->>>>>>> f6a450249643f2cc6dfc04ec2ef7b2b8773932d9
