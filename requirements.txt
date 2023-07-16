@@ -3,3 +3,6 @@ black
 discord.py
 requests
 urllib3<2.0
+yfinance
+pandas
+numpy
