@@ -6,7 +6,7 @@ urllib3<2.0
 yfinance
 pandas
 numpy
-dotenv
+python-dotenv
 json
 time
 datetime
