@@ -42,4 +42,6 @@ while True:
 
     time.sleep(86400)  # check daily for now
 
+# today = datetime.date.today()
+# df = yf.download("SOL-USD", start="2023-07-16")
 # print(df)
