@@ -1,0 +1,15 @@
+flake8
+black
+discord.py
+requests
+urllib3<2.0
+yfinance
+pandas
+numpy
+python-dotenv
+json
+time
+datetime
+os
+tweepy
+numpy
