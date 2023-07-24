@@ -1,6 +1,8 @@
 # Tweeting an alert / notification
 # DO I NEED ENDPOINT URL FROM AWS EC2? Using https://localhost in the app settings
 
+# it's not working - says i dont have permissions. Going to create a branch and try option two for tweeting..
+
 import os
 from dotenv import load_dotenv
 import numpy as np

@@ -1,5 +1,7 @@
 # will track volume. When crypto volume and prices increase, it is often local or even cycle top
 
+# see Serious Python, try to output volume into postgreSQL
+
 """
 Authenticate with the Yahoo API
 Send requests to the Yahoo API to retrieve data
@@ -40,7 +42,7 @@ while True:
     if not df.empty:
         prev_volume = df.Volume.iloc[-1]  # in case the dataframe is empty
 
-    time.sleep(86400)  # check daily for now
+    time.sleep(60)  # check daily for now
 
 # today = datetime.date.today()
 # df = yf.download("SOL-USD", start="2023-07-16")
