@@ -2,6 +2,10 @@
 
 # see Serious Python, try to output volume into postgreSQL
 
+# NOTe that I had to clone this under a diff directory in EC2, top_caller_database:
+# git clone -b database https://github.com/Jmclark3592/top_caller.git top_caller_database
+
+
 import yfinance as yf
 
 # import pandas as pd
@@ -17,8 +21,8 @@ import time
 load_dotenv()
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 conn = sqlite3.connect(
-    "/Users/justinclark/Workspace/top_caller/volume_tracker/volume_sqlite.db"
-)
+    "volume_sqlite.db"
+)  # Or local /Users/justinclark/Workspace/top_caller/volume_tracker/volume_sqlite.db
 
 cursor = conn.cursor()
 cursor.execute(
