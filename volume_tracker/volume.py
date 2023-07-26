@@ -60,7 +60,7 @@ while True:
     if (
         not df.empty
         and prev_volume is not None
-        and df.Volume.iloc[-1] > prev_volume * 1.01
+        and df.Volume.iloc[-1] > prev_volume * float(1.01)
     ):
         print("Sending alert to discord")
         alert_content = (
