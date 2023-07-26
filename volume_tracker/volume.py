@@ -51,7 +51,8 @@ cursor.execute(
     (prev_day,),
 )
 row = cursor.fetchone()
-prev_volume = row[0] if row is not None else None
+prev_volume = float(row[0]) if row is not None else None
+
 
 while True:
     today = datetime.date.today()
@@ -60,7 +61,7 @@ while True:
     if (
         not df.empty
         and prev_volume is not None
-        and df.Volume.iloc[-1] > prev_volume * float(1.01)
+        and df.Volume.iloc[-1] > (prev_volume + 5000)
     ):
         print("Sending alert to discord")
         alert_content = (
@@ -80,6 +81,7 @@ while True:
         close = df["Close"].iloc[-1]
         adj_close = df["Adj Close"].iloc[-1]
         volume = df["Volume"].iloc[-1]
+        print(type(volume), volume)
 
         cursor.execute(
             """
