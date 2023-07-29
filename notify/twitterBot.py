@@ -11,9 +11,9 @@ import tweepy
 load_dotenv()
 
 consumer_key = os.getenv("TWITTER_API_KEY")
-consumer_secret_key = os.getenv("TWITTER_SECRET_KEY")
+consumer_secret_key = os.getenv("TWITTER_API_SECRET_KEY")
 access_token = os.getenv("TWITTER_ACCESS_TOKEN")
-access_token_secret = os.getenv("TWITTER_ACCESS_SECRET")
+access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
 auth.set_access_token(access_token, access_token_secret)
