@@ -91,7 +91,7 @@ while True:
         prev_volume = volume
         conn.commit()
 
-    time.sleep(86400)
+    time.sleep(3600)  # hourly
 
 conn.close()
 
