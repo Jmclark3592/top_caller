@@ -1,4 +1,4 @@
-# will track volume. When crypto volume and prices increase, it is often local or even cycle top
+# Will track volume. When crypto volume and prices increase, it is often local or even cycle top
 
 # see Serious Python, try to output volume into postgreSQL
 
@@ -7,10 +7,9 @@
 
 
 import yfinance as yf
-
-# import pandas as pd
-# import numpy as np
 import sqlite3
+import csv
+import boto3
 from dotenv import load_dotenv
 import os
 import requests
@@ -22,7 +21,7 @@ load_dotenv()
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 conn = sqlite3.connect(
     "volume_sqlite.db"
-)  # Or local /Users/justinclark/Workspace/top_caller/volume_tracker/volume_sqlite.db
+)  # Connects to database in the current directory
 
 cursor = conn.cursor()
 cursor.execute(
@@ -34,13 +33,12 @@ cursor.execute(
                 Low REAL,
                 Close REAL,
                 Adj_Close REAL,
-                Volume BIGINT
+                Volume TEXT
             )
         """
 )
 conn.commit()
 
-prev_volume = None
 
 prev_day = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
 
@@ -51,6 +49,13 @@ cursor.execute(
     (prev_day,),
 )
 row = cursor.fetchone()
+
+s3 = boto3.client("s3")
+bucket = "volume"  # bucket name i gave it when creating with AWS
+csv_file = "volume_data.csv"
+
+prev_volume = None
+
 prev_volume = float(row[0]) if row is not None else None
 
 
@@ -91,10 +96,16 @@ while True:
         prev_volume = volume
         conn.commit()
 
-    time.sleep(3600)  # hourly
+    cursor.execute("SELECT * FROM volume_data")
+    rows = cursor.fetchall()
+
+    with open("volume_data.csv", "w", newline="") as csvfile:  # write to csv file
+        writer = csv.writer(csvfile)
+        writer.writerow(
+            ["Date", "Open_Val", "High", "Low", "Close", "Adj_Close", "Volume"]
+        )
+        writer.writerows(rows)
+    s3.upload_file("volume_data.csv", "volume", "volume_data.csv")
+    time.sleep(86400)  # daily
 
 conn.close()
-
-# today = datetime.date.today()
-# df = yf.download("SOL-USD", start="2023-07-16")
-# print(df)
