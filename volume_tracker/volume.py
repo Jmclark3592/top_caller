@@ -5,6 +5,8 @@
 # NOTe that I had to clone this under a diff directory in EC2, top_caller_database:
 # git clone -b database https://github.com/Jmclark3592/top_caller.git top_caller_database
 
+# I am outputting to SQLite which is not outputting volume so i added a aws s3 bucket to try that.
+
 
 import yfinance as yf
 import sqlite3
@@ -33,7 +35,7 @@ cursor.execute(
                 Low REAL,
                 Close REAL,
                 Adj_Close REAL,
-                Volume TEXT
+                Volume INTEGER 
             )
         """
 )
@@ -55,7 +57,7 @@ bucket = "volume"  # bucket name i gave it when creating with AWS
 csv_file = "volume_data.csv"
 
 prev_volume = None
-
+print("Row content:", row)
 prev_volume = float(row[0]) if row is not None else None
 
 
@@ -85,7 +87,7 @@ while True:
         low = df["Low"].iloc[-1]
         close = df["Close"].iloc[-1]
         adj_close = df["Adj Close"].iloc[-1]
-        volume = df["Volume"].iloc[-1]
+        volume = int(df["Volume"].iloc[-1])
         print(type(volume), volume)
 
         cursor.execute(
