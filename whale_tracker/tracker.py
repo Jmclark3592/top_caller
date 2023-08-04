@@ -48,4 +48,4 @@ while True:
 
     prev_bal = current_bal
 
-    time.sleep(5)  # polling API every 60s (set to 5s during testing)
+    time.sleep(3600)  # pulling API every hour (set to 5s during testing)
